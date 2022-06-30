@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+	<title>Школа №8</title>
+	<link type="text/css" href="{% static 'school/css/login.css' %}" rel="stylesheet" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<link rel="shortcut icon" href="{% static 'school/images/main.ico' %}" type="image/x-icon"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+
+<div class="main">
+		<input type="checkbox" id="chk" aria-hidden="true">
+
+
+<form method="post">
+    {%csrf_token %}
+   <!-- {{  form.as_p}}   -->
+
+<div class="signup">
+		<label for="chk" aria-hidden="true">Авторизация</label>
+      {% for f in form %}
+
+<p><label class="form-label"  for="{{ f.id_for_label }}">{{f.label}}: </label>{{ f }}</p>
+<div class="form-error">{{ f.errors }}</div>
+{% endfor %}
+    <button type="submit">Войти</button>
+</div>
+</form>
+
+</body>
+</body>
+</html>

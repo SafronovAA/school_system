@@ -1,0 +1,16 @@
+{% extends 'school/base.html' %}
+{% block content %}
+<h2>Домашние задания</h2>
+
+<ul class="list-articles">
+    {% for p in user %}
+
+    <li>
+        <p>{{p.name}}</p>
+        <p>{{p.author}}</p>
+
+
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

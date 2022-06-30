@@ -1,0 +1,72 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	{% if request.user.is_superuser %}
+	<title>Школа №8</title>
+	<link type="text/css" href="{% static 'school/css/style.css' %}" rel="stylesheet" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<link rel="shortcut icon" href="{% static 'school/images/main.ico' %}" type="image/x-icon"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<table class="table-page" border=0 cellpadding="0" cellspacing="0">
+<tr><td valign=top>
+{% block mainmenu %}
+		<div class="header">
+			<ul id="mainmenu" class="mainmenu">
+			<!--<li class="logo"><a href="#"><div class="logo"></div></a></li> -->
+
+
+
+				<li><a href="{% url 'online' %}">Школа №8</a></li>
+				<li><a href="#">Моя страница</a></li>
+
+
+
+
+				{% if request.user.is_authenticated %}
+				<li class="last">{{user.username}}| <a href="{% url 'logout' %}">Выйти</a></li>
+				{% else %}
+				<li class="last">{{user.username}}| <a href="{% url 'login' %}">Войти</a></li>
+					{% endif %}
+			</ul>
+			<div class="clear"></div>
+		</div>
+{% endblock mainmenu %}
+
+
+<table class="table-content"  border=0 cellpadding="0" cellspacing="0">
+<tr>
+
+<!-- Sidebar слева -->
+	<td valign="top" class="left-chapters">
+	<ul id="leftchapters">
+		<!--<li class="selected">Все категории</li> -->
+		<li><a href="{% url 'addpost' %}">Добавление задания</a></li>
+		<li><a href="{% url 'addonline' %}">Добавление онлайн занятия</a></li>
+		<li><a href="{% url 'check' %}">Проверка заданий</a></li>
+
+
+	</ul>
+</td>
+<!-- Конец Sidebar'а -->
+<td valign="top" class="content">
+	<!-- Хлебные крошки -->
+	{% block breadcrumbs %}
+	{% endblock %}
+
+<!-- Блок контента -->
+	<div class="content-text">
+{% block content %}
+{% endblock %}
+	</div>
+<!-- Конец блока контента -->
+{% else %}
+	<h2>Вы не обладаете данными правами</h2>
+	<a href="{% url 'login' %}">Перейти к авторизации</a>
+
+{% endif %}
+<!-- Конец footer'а и страницы -->
+</body>
+</html>

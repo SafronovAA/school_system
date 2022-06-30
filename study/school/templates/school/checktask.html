@@ -1,0 +1,52 @@
+{% extends 'school/Teacher.html' %}
+{% block content %}
+<ul class="list-articles">
+
+    {% for p in tasks %}
+
+
+
+    <li>
+        <h2>{{p.id_task}}</h2>
+        <h4>Задание: <a style="font-weight: normal;font-size: 0.9em;color:black">{{p.id_task.content}}</a></h4>
+        <h4>Класс: <a style="font-weight: normal;font-size: 0.9em;color:black">{{p.id_task.id_class.name}}</a></h4>
+        <h4>Предмет: <a style="font-weight: normal;font-size: 0.9em;color:black">{{p.id_task.id_sub.name}}</a></h4>
+        <h4>Задание принял: <a style="font-weight: normal;font-size: 0.9em;color:black">{{p.time_create}}</a></h4>
+         <h4>Задание выполнил: <a style="font-weight: normal;font-size: 0.9em;color:black">{{p.time_update}}</a></h4>
+
+        <h4>Ученик: <a style="font-weight: normal;font-size: 0.9em;color:black">{{p.id_student}}</a></h4>
+          {% if p.file == NULL %}
+            <p>Оценка: Нет файла</p>
+        {% else %}
+            <p>Файл:<a style="color:orange;"> {{p.file}}</a></p>
+        {% endif %}
+        {% if p.mark == None %}
+            <h4>Оценка: Не оценено</h4>
+        {% else %}
+            <h4>Оценка:<a style="color:orange;"> {{p.mark}}</a></h4>
+        <h4>Комментарии к заданию:<a style="color:grey;"> {{p.comment}}</a></h4>
+          {% endif %}
+
+        <p ><a style=" display: inline-block;
+  color: white;
+  text-decoration: none;
+  padding: .2em 1em;
+  outline: none;
+  border-width: 1px 0;
+  border-style: solid none;
+  border-color: #FDBE33 #000 #D77206;
+  border-radius: 6px;
+  background: linear-gradient(#F3AE0F, #E38916) #E38916;
+  transition: 0.2s;" href="{{ p.get_absolute_url }}">Оценить</a></p>
+    </li>
+
+    {% endfor %}
+
+</ul>
+
+
+
+
+
+
+{% endblock %}

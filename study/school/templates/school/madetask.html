@@ -1,0 +1,30 @@
+{% extends 'school/base.html' %}
+{% block content %}
+
+
+<ul class="list-articles">
+
+    {% for p in viewtask %}
+
+    <li>
+         <H1>{{p.id_task}}</H1>
+        <H3 > Задание: <a style="font-weight: normal;font-size: 0.9em;color:black">{{p.id_task.content}}</a>
+        <H3 > Предмет: <a style="font-weight: normal;font-size: 0.9em;color:black">{{p.id_task.id_sub.name}}</a></H3>
+<h3>Комментарии к работе: <a style="font-weight: normal;font-size: 0.9em;">{{p.comment}}</a></h3>
+<h3>Оценка:<a style="font-weight: normal;color:orange"> {{p.mark}}</a></h3>
+        <p ><a style=" display: inline-block;
+  color: white;
+  text-decoration: none;
+  padding: .2em 1em;
+  outline: none;
+  border-width: 1px 0;
+  border-style: solid none;
+  border-color: #FDBE33 #000 #D77206;
+  border-radius: 6px;
+  background: linear-gradient(#F3AE0F, #E38916) #E38916;
+  transition: 0.2s;" href="{{ p.get_absolute_url }}">Переделать</a></p>
+    </li>
+    {% endfor %}
+
+</ul>
+{% endblock %}

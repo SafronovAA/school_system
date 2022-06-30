@@ -1,0 +1,31 @@
+{% extends 'school/Teacher.html' %}
+{% block content %}
+<H1>Добавление онлайн занятия</H1>
+<form action="{% url 'addonline' %}" method="post">
+    {% csrf_token %}
+    {% csrf_token %}
+    <!--{{form.as_p}}-->
+
+    {% for f in form %}
+<p><label class="form-label" for="{{ f.id_for_label }}">{{f.label}}: </label>{{ f }}</p>
+<div class="form-error">{{ f.errors }}</div>
+{% endfor %}
+    <button type="submit" style=" display: inline-block;
+  color: white;
+  text-decoration: none;
+  padding: .7em 3em;
+  outline: none;
+  border-width: 2px 0;
+  border-style: solid none;
+  border-color: #FDBE33 #000 #D77206;
+  border-radius: 6px;
+  background: linear-gradient(#F3AE0F, #E38916) #E38916;
+  transition: 0.2s;">Добавить</button>
+
+
+
+</form>
+
+
+
+{% endblock %}
